@@ -5,15 +5,15 @@ Dockerfile and scripts to build a [Docker](https://www.docker.com/) image for [I
 To start INetSim with DNS, HTTP, HTTPS, and FTP enabled run:
 ```
 $ docker run -it --rm --name inetsim \
-      -p 127.0.0.1:53:53/udp \
-      -p 127.0.0.1:80:80 \
-      -p 127.0.0.1:443:443 \
-      -p 127.0.0.1:21:21 \
+      -p 53:53/udp \
+      -p 80:80 \
+      -p 443:443 \
+      -p 21:21 \
       -e INETSIM_START_SERVICES=dns,http,https,ftp \
       -e INETSIM_DNS_VERSION="DNS Version" \
       -e INETSIM_FTPS_BIND_PORT=21 \
       -v $(pwd)/user_configs:/opt/inetsim/conf/user_configs:ro \
-      0x4d4c/inetsim
+      g00dj0b/inetsim
 ```
 
 # Volumes
