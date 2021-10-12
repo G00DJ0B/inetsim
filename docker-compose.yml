@@ -8,10 +8,16 @@ services:
       - "80:80"
       - "443:443"
       - "21:21"
-    working_dir: /opt/intesim/
     volumes:
-      - $(pwd)/user_configs:/opt/inetsim/conf/user_configs:ro
+      - type: bind
+        source: ./user_configs
+        target: /opt/inetsim/conf/user_configs
+        read_only: true
     environment:
       INETSIM_START_SERVICES: dns,http,https,ftp
       INETSIM_FTPS_BIND_PORT: 21
       INETSIM_DNS_VERSION: "DNS Version"
+networks:
+  default:
+    external: true
+    name: app_default
