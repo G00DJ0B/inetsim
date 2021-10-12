@@ -1,5 +1,5 @@
-FROM debian:10
-MAINTAINER Martin Lambertz <martin@0x4d4c.xyz>
+FROM debian:11
+LABEL maintainer="Michael Thompson"
 
 ENV INETSIM_VERSION=1.3.2 \
     INETSIM_SIGNING_KEY_ID=0x6881B9A7E9F601C8 \
