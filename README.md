@@ -16,6 +16,11 @@ $ docker run -it --rm --name inetsim \
       g00dj0b/inetsim
 ```
 
+Using Docker Compose:
+```
+$ docker-compose up -d
+```
+
 # Volumes
 The following directories are defined as volumes:
 
