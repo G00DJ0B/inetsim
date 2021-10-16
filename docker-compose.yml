@@ -17,7 +17,10 @@ services:
       INETSIM_START_SERVICES: dns,http,https,ftp
       INETSIM_FTPS_BIND_PORT: 21
       INETSIM_DNS_VERSION: "DNS Version"
-networks:
-  default:
-    external: true
-    name: app_default
+#
+# Assign specific network
+#
+#networks:
+  #default:
+    #external: true
+    #name: app_default
