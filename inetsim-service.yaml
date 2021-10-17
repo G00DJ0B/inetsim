@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: inetsim
+  name: inetsim
+spec:
+  ports:
+    - name: "53"
+      port: 53
+      targetPort: 53
+    - name: "80"
+      port: 80
+      targetPort: 80
+    - name: "443"
+      port: 443
+      targetPort: 443
+    - name: "21"
+      port: 21
+      targetPort: 21
+  selector:
+    io.kompose.service: inetsim
+status:
+  loadBalancer: {}

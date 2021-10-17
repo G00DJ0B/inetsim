@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: inetsim
+  name: inetsim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: inetsim
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.24.0 (4a2a0458)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: inetsim
+    spec:
+      containers:
+        - env:
+            - name: INETSIM_DNS_VERSION
+              value: DNS Version
+            - name: INETSIM_FTPS_BIND_PORT
+              value: "21"
+            - name: INETSIM_START_SERVICES
+              value: dns,http,https,ftp
+          image: g00dj0b/inetsim
+          name: inetsim
+          ports:
+            - containerPort: 53
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 21
+          resources: {}
+          volumeMounts:
+            - mountPath: /opt/inetsim/conf/user_configs
+              name: inetsim-claim0
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: inetsim-claim0
+          persistentVolumeClaim:
+            claimName: inetsim-claim0
+            readOnly: true
+status: {}
