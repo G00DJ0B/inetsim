@@ -1,22 +1,30 @@
 version: "3.7"
 
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "443:443"
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
   inetsim:
     image: g00dj0b/inetsim
     ports:
-      - "53:53"
       - "80:80"
-      - "443:443"
-      - "21:21"
+      - "8443:443"
     volumes:
       - type: bind
         source: ./user_configs
         target: /opt/inetsim/conf/user_configs
         read_only: true
     environment:
-      INETSIM_START_SERVICES: dns,http,https,ftp
-      INETSIM_FTPS_BIND_PORT: 21
-      INETSIM_DNS_VERSION: "DNS Version"
+      INETSIM_START_SERVICES: http,https
+      INETSIM_CREATE_REPORTS: yes
+      INETSIM_HTTP_FAKEMODE: yes
+      INETSIM_HTTPS_FAKEMODE: yes
 #
 # Assign specific network
 #
